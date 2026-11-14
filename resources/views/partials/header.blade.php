@@ -32,13 +32,28 @@
     </div>
 </div>
 
-<header data-site-header class="site-header sticky top-0 z-50 border-b border-ink-900/5 bg-cream/95">
-    <div class="container-x header-inner flex items-center justify-between gap-6 py-4">
+<header data-site-header class="site-header sticky top-0 z-50 border-b border-ink-900/5 bg-cream/75">
+    <div class="container-x header-inner flex items-center justify-between gap-6 py-2">
         <x-logo class="relative z-10" />
 
         <nav class="hidden items-center gap-8 lg:flex" aria-label="Main navigation">
             <a href="{{ route('home') }}" class="link-underline text-sm font-bold {{ request()->routeIs('home') ? 'is-active text-brand-800' : 'text-ink-700 hover:text-brand-800' }}">Home</a>
-            <a href="{{ route('about') }}" class="link-underline text-sm font-bold {{ request()->routeIs('about') ? 'is-active text-brand-800' : 'text-ink-700 hover:text-brand-800' }}">About</a>
+            <div class="group relative">
+                <a href="{{ route('about') }}" class="link-underline inline-flex items-center gap-1.5 text-sm font-bold {{ request()->routeIs('about', 'about.*') ? 'is-active text-brand-800' : 'text-ink-700 hover:text-brand-800' }}">
+                    About
+                    <x-icon name="chevron-down" class="size-3.5 transition duration-300 group-hover:rotate-180" />
+                </a>
+                <div class="invisible absolute left-1/2 top-full z-20 w-60 -translate-x-1/2 translate-y-3 pt-5 opacity-0 transition duration-300 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                    <div class="overflow-hidden rounded-2xl border border-ink-900/5 bg-white p-2 shadow-2xl shadow-ink-950/10">
+                        <a href="{{ route('about.team') }}" class="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold text-ink-700 transition hover:bg-brand-50 hover:text-brand-800">
+                            Our Team
+                        </a>
+                        <a href="{{ route('about.privacy') }}" class="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold text-ink-700 transition hover:bg-brand-50 hover:text-brand-800">
+                            Privacy Policy
+                        </a>
+                    </div>
+                </div>
+            </div>
 
             <div class="group relative">
                 <a href="{{ route('projects.index') }}" class="link-underline inline-flex items-center gap-1.5 text-sm font-bold {{ request()->routeIs('projects.*') ? 'is-active text-brand-800' : 'text-ink-700 hover:text-brand-800' }}">
@@ -58,6 +73,9 @@
                         </a>
                         <a href="{{ route('projects.index', ['status' => 'completed']) }}" class="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold text-ink-700 transition hover:bg-brand-50 hover:text-brand-800">
                             Handed Over <span class="text-xs text-ink-400">{{ \App\Models\Project::active()->where('status', 'completed')->count() }}</span>
+                        </a>
+                        <a href="{{ route('projects.index', ['status' => 'ready']) }}" class="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold text-ink-700 transition hover:bg-brand-50 hover:text-brand-800">
+                            Ready <span class="text-xs text-ink-400">{{ \App\Models\Project::active()->where('status', 'ready')->count() }}</span>
                         </a>
                     </div>
                 </div>
@@ -107,11 +125,16 @@
                 <nav class="flex flex-col" aria-label="Mobile navigation">
                     <a href="{{ route('home') }}" class="rounded-xl px-4 py-3 text-sm font-bold text-ink-800 transition hover:bg-brand-50 hover:text-brand-800">Home</a>
                     <a href="{{ route('about') }}" class="rounded-xl px-4 py-3 text-sm font-bold text-ink-800 transition hover:bg-brand-50 hover:text-brand-800">About</a>
+                    <div class="ml-3 flex flex-col border-l border-ink-900/10 pl-3">
+                        <a href="{{ route('about.team') }}" class="rounded-lg px-3 py-2 text-xs font-semibold text-ink-500 transition hover:text-brand-800">Our Team</a>
+                        <a href="{{ route('about.privacy') }}" class="rounded-lg px-3 py-2 text-xs font-semibold text-ink-500 transition hover:text-brand-800">Privacy Policy</a>
+                    </div>
                     <a href="{{ route('projects.index') }}" class="rounded-xl px-4 py-3 text-sm font-bold text-ink-800 transition hover:bg-brand-50 hover:text-brand-800">Projects</a>
                     <div class="ml-3 flex flex-col border-l border-ink-900/10 pl-3">
                         <a href="{{ route('projects.index', ['status' => 'ongoing']) }}" class="rounded-lg px-3 py-2 text-xs font-semibold text-ink-500 transition hover:text-brand-800">Ongoing</a>
                         <a href="{{ route('projects.index', ['status' => 'upcoming']) }}" class="rounded-lg px-3 py-2 text-xs font-semibold text-ink-500 transition hover:text-brand-800">Upcoming</a>
                         <a href="{{ route('projects.index', ['status' => 'completed']) }}" class="rounded-lg px-3 py-2 text-xs font-semibold text-ink-500 transition hover:text-brand-800">Handed Over</a>
+                        <a href="{{ route('projects.index', ['status' => 'ready']) }}" class="rounded-lg px-3 py-2 text-xs font-semibold text-ink-500 transition hover:text-brand-800">Ready</a>
                     </div>
                     <a href="{{ route('gallery') }}" class="rounded-xl px-4 py-3 text-sm font-bold text-ink-800 transition hover:bg-brand-50 hover:text-brand-800">Gallery</a>
                     <a href="{{ route('contact') }}" class="rounded-xl px-4 py-3 text-sm font-bold text-ink-800 transition hover:bg-brand-50 hover:text-brand-800">Contact</a>

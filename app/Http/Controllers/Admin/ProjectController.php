@@ -125,7 +125,7 @@ class ProjectController extends Controller
             'tagline' => ['nullable', 'string', 'max:200'],
             'location' => ['required', 'string', 'max:200'],
             'description' => ['nullable', 'string'],
-            'status' => ['required', 'in:ongoing,upcoming,completed'],
+            'status' => ['required', 'in:ongoing,upcoming,completed,ready'],
             'nature' => ['nullable', 'string', 'max:100'],
             'floors' => ['nullable', 'string', 'max:100'],
             'land_area' => ['nullable', 'string', 'max:100'],

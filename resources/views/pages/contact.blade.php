@@ -5,6 +5,7 @@
 
 @section('content')
     <x-page-hero
+        :image="setting('banner_image_contact')"
         eyebrow="Contact Us"
         title="Let's start a conversation."
         subtitle="Whether you are buying your first home or planning a development on your land, our team is here to help."
@@ -20,7 +21,7 @@
                 </p>
 
                 <div class="mt-8 space-y-3">
-                    <a href="tel:{{ setting('phone_link') }}" class="group flex items-start gap-4 rounded-[1.5rem] border border-ink-900/5 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg">
+                    <a href="tel:{{ setting('phone_link') }}" class="group flex items-start gap-4 rounded-3xl border border-ink-900/5 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg">
                         <span class="grid size-11 shrink-0 place-items-center rounded-full bg-brand-700 text-white transition group-hover:bg-accent-600"><x-icon name="phone" class="size-5" /></span>
                         <div>
                             <p class="text-[9px] font-extrabold uppercase tracking-[0.22em] text-ink-400">Call us</p>
@@ -29,7 +30,7 @@
                         </div>
                     </a>
 
-                    <a href="mailto:{{ setting('email') }}" class="group flex items-start gap-4 rounded-[1.5rem] border border-ink-900/5 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg">
+                    <a href="mailto:{{ setting('email') }}" class="group flex items-start gap-4 rounded-3xl border border-ink-900/5 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg">
                         <span class="grid size-11 shrink-0 place-items-center rounded-full bg-accent-600 text-white transition group-hover:bg-brand-700"><x-icon name="mail" class="size-5" /></span>
                         <div>
                             <p class="text-[9px] font-extrabold uppercase tracking-[0.22em] text-ink-400">Email us</p>
@@ -38,7 +39,7 @@
                         </div>
                     </a>
 
-                    <div class="flex items-start gap-4 rounded-[1.5rem] border border-ink-900/5 bg-white p-5 shadow-sm">
+                    <div class="flex items-start gap-4 rounded-3xl border border-ink-900/5 bg-white p-5 shadow-sm">
                         <span class="grid size-11 shrink-0 place-items-center rounded-full bg-ink-950 text-gold-300"><x-icon name="pin" class="size-5" /></span>
                         <div>
                             <p class="text-[9px] font-extrabold uppercase tracking-[0.22em] text-ink-400">Corporate office</p>
@@ -59,7 +60,7 @@
                 </div>
             </div>
 
-            <div class="rounded-[2rem] border border-ink-900/5 bg-white p-6 shadow-xl shadow-ink-950/5 sm:p-8" data-reveal="right">
+            <div class="rounded-4xl border border-ink-900/5 bg-white p-6 shadow-xl shadow-ink-950/5 sm:p-8" data-reveal="right">
                 <div class="mb-6">
                     <p class="text-[10px] font-extrabold uppercase tracking-[0.28em] text-accent-600">Enquiry Form</p>
                     <h2 class="mt-2 font-display text-3xl text-ink-900">How can we help?</h2>
@@ -72,8 +73,8 @@
 
     <section class="bg-white pb-16 lg:pb-24">
         <div class="container-x">
-            <div class="overflow-hidden rounded-[2rem] border border-ink-900/10 bg-cream shadow-sm" data-reveal="zoom">
-                <div class="aspect-[4/3] w-full sm:aspect-[21/9]">
+            <div class="overflow-hidden rounded-4xl border border-ink-900/10 bg-cream shadow-sm" data-reveal="zoom">
+                <div class="aspect-4/3 w-full sm:aspect-21/9">
                     <iframe
                         src="{{ setting('map_embed') }}"
                         title="PRB Holdings office location"

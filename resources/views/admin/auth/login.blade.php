@@ -55,10 +55,10 @@
                 <form method="POST" action="{{ route('admin.login.store') }}" class="mt-7 space-y-4">
                     @csrf
                     <div>
-                        <label class="field-label text-white/50" for="email">Email address</label>
-                        <input class="field-dark" type="email" id="email" name="email"
-                            value="{{ old('email') }}" placeholder="admin@prbholdingsbd.com" required autofocus
-                            autocomplete="email">
+                        <label class="field-label text-white/50" for="login">Username or Email</label>
+                        <input class="field-dark" type="text" id="login" name="login"
+                            value="{{ old('login') }}" placeholder="prbholdings" required autofocus
+                            autocomplete="username">
                     </div>
                     <div>
                         <label class="field-label text-white/50" for="password">Password</label>

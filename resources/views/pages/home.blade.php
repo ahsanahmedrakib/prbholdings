@@ -114,6 +114,8 @@
                             <a href="{{ route('projects.index', ['status' => 'completed']) }}"
                                 class="rounded-full px-3.5 py-2 text-[11px] font-bold text-white/60 transition hover:bg-white/10 hover:text-white">Handed
                                 Over</a>
+                            <a href="{{ route('projects.index', ['status' => 'ready']) }}"
+                                class="rounded-full px-3.5 py-2 text-[11px] font-bold text-white/60 transition hover:bg-white/10 hover:text-white">Ready</a>
                         </div>
 
                         <div class="flex items-center gap-3 sm:gap-4">
@@ -280,6 +282,8 @@
                     <a href="{{ route('projects.index', ['status' => 'completed']) }}"
                         class="inline-flex items-center gap-2 rounded-full border border-ink-900/10 bg-white px-4 py-2 text-xs font-bold text-ink-700 transition hover:border-brand-700/30 hover:text-brand-800">Handed
                         Over</a>
+                    <a href="{{ route('projects.index', ['status' => 'ready']) }}"
+                        class="inline-flex items-center gap-2 rounded-full border border-ink-900/10 bg-white px-4 py-2 text-xs font-bold text-ink-700 transition hover:border-brand-700/30 hover:text-brand-800">Ready</a>
                 </div>
             </div>
 

@@ -1,7 +1,7 @@
 @props(['project'])
 
-<article {{ $attributes->merge(['class' => 'project-card group relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-ink-900/5 bg-white transition duration-500 hover:-translate-y-1.5']) }}>
-    <a href="{{ route('projects.show', $project) }}" class="relative block aspect-[4/5] overflow-hidden bg-ink-900">
+<article {{ $attributes->merge(['class' => 'project-card group relative flex h-full flex-col overflow-hidden rounded-4xl border border-ink-900/5 bg-white transition duration-500 hover:-translate-y-1.5']) }}>
+    <a href="{{ route('projects.show', $project) }}" class="relative block aspect-4/5 overflow-hidden bg-ink-900">
         <img
             src="{{ $project->cover_image_url }}"
             alt="{{ $project->name }}"

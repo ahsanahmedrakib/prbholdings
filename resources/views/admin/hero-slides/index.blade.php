@@ -13,7 +13,7 @@
     <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         @forelse ($slides as $slide)
             <div class="overflow-hidden rounded-2xl border border-ink-900/5 bg-white shadow-sm">
-                <div class="relative aspect-[16/10] overflow-hidden bg-ink-900">
+                <div class="relative aspect-16/10 overflow-hidden bg-ink-900">
                     <img src="{{ $slide->image_url }}" alt="{{ $slide->title }}" class="h-full w-full object-cover">
                     <div class="absolute inset-0 bg-linear-to-t from-ink-950/80 to-transparent"></div>
                     <span class="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-wide text-ink-700">Order {{ $slide->sort_order }}</span>

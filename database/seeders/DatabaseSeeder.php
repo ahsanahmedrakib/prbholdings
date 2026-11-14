@@ -14,7 +14,9 @@ class DatabaseSeeder extends Seeder
             HeroSlideSeeder::class,
             AmenitySeeder::class,
             ProjectSeeder::class,
+            GallerySeeder::class,
             TestimonialSeeder::class,
+            TeamSeeder::class,
         ]);
     }
 }

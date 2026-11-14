@@ -12,7 +12,7 @@
 
     <div class="overflow-hidden rounded-2xl border border-ink-900/5 bg-white shadow-sm">
         <div class="overflow-x-auto">
-            <table class="w-full min-w-[640px] text-left text-sm">
+            <table class="w-full min-w-160 text-left text-sm">
                 <thead class="border-b border-ink-900/5 bg-ink-50/70">
                     <tr class="text-[9px] font-extrabold uppercase tracking-[0.18em] text-ink-400">
                         <th class="px-5 py-3.5">Amenity</th>

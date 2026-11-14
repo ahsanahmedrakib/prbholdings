@@ -48,6 +48,10 @@
                     class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition {{ request()->routeIs('admin.hero-slides.*') ? 'bg-brand-600 text-white shadow-lg shadow-brand-900/30' : 'text-white/60 hover:bg-white/5 hover:text-white' }}">
                     <x-icon name="image" class="size-4" /> Hero Slides
                 </a>
+                <a href="{{ route('admin.gallery.index') }}"
+                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition {{ request()->routeIs('admin.gallery.*') ? 'bg-brand-600 text-white shadow-lg shadow-brand-900/30' : 'text-white/60 hover:bg-white/5 hover:text-white' }}">
+                    <x-icon name="image" class="size-4" /> Gallery
+                </a>
                 <a href="{{ route('admin.testimonials.index') }}"
                     class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition {{ request()->routeIs('admin.testimonials.*') ? 'bg-brand-600 text-white shadow-lg shadow-brand-900/30' : 'text-white/60 hover:bg-white/5 hover:text-white' }}">
                     <x-icon name="quote" class="size-4" /> Testimonials
@@ -55,6 +59,10 @@
                 <a href="{{ route('admin.amenities.index') }}"
                     class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition {{ request()->routeIs('admin.amenities.*') ? 'bg-brand-600 text-white shadow-lg shadow-brand-900/30' : 'text-white/60 hover:bg-white/5 hover:text-white' }}">
                     <x-icon name="sparkles" class="size-4" /> Amenities
+                </a>
+                <a href="{{ route('admin.team.index') }}"
+                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition {{ request()->routeIs('admin.team.*') ? 'bg-brand-600 text-white shadow-lg shadow-brand-900/30' : 'text-white/60 hover:bg-white/5 hover:text-white' }}">
+                    <x-icon name="users" class="size-4" /> Our Team
                 </a>
 
                 <p class="px-3 pb-2 pt-5 text-[9px] font-extrabold uppercase tracking-[0.28em] text-white/30">
@@ -154,6 +162,77 @@
             <footer class="border-t border-ink-900/5 px-4 py-4 text-center text-[11px] text-ink-400 sm:px-6 lg:px-8">
                 PRB Holdings admin · {{ date('Y') }}
             </footer>
+        </div>
+    </div>
+
+    <div data-admin-loading hidden class="fixed inset-0 z-70 bg-ink-50" aria-hidden="true">
+        <div class="flex h-full">
+            <div class="hidden w-72 shrink-0 flex-col border-r border-white/5 bg-ink-950 lg:flex">
+                <div class="border-b border-white/10 px-5 py-5">
+                    <div class="skeleton-dark h-8 w-36 rounded-lg"></div>
+                </div>
+                <div class="space-y-2 px-3 py-5">
+                    <div class="skeleton-dark mb-3 h-3 w-20 rounded"></div>
+                    @for ($i = 0; $i < 6; $i++)
+                        <div class="skeleton-dark h-10 rounded-xl"></div>
+                    @endfor
+                </div>
+            </div>
+
+            <div class="flex min-w-0 flex-1 flex-col">
+                <div class="border-b border-ink-900/5 bg-white px-4 py-4 sm:px-6 lg:px-8">
+                    <div class="skeleton h-3 w-24 rounded"></div>
+                    <div class="skeleton mt-3 h-6 w-44 rounded-lg"></div>
+                </div>
+
+                <div class="flex-1 px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+                    <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                        @for ($i = 0; $i < 4; $i++)
+                            <div class="rounded-2xl border border-ink-900/5 bg-white p-5 shadow-sm">
+                                <div class="skeleton size-10 rounded-xl"></div>
+                                <div class="skeleton mt-5 h-8 w-16 rounded-lg"></div>
+                                <div class="skeleton mt-2 h-3 w-24 rounded"></div>
+                            </div>
+                        @endfor
+                    </div>
+
+                    <div class="mt-6 grid gap-6 xl:grid-cols-[1.25fr_0.75fr]">
+                        <div class="rounded-2xl border border-ink-900/5 bg-white p-5 shadow-sm">
+                            <div class="skeleton h-4 w-36 rounded"></div>
+                            <div class="mt-5 space-y-4">
+                                @for ($i = 0; $i < 5; $i++)
+                                    <div class="flex items-center gap-3">
+                                        <div class="skeleton size-9 shrink-0 rounded-full"></div>
+                                        <div class="flex-1 space-y-2">
+                                            <div class="skeleton h-3 w-1/3 rounded"></div>
+                                            <div class="skeleton h-3 w-2/3 rounded"></div>
+                                        </div>
+                                    </div>
+                                @endfor
+                            </div>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div class="rounded-2xl border border-ink-900/5 bg-white p-5 shadow-sm">
+                                <div class="skeleton h-4 w-28 rounded"></div>
+                                <div class="mt-4 grid grid-cols-2 gap-2">
+                                    @for ($i = 0; $i < 4; $i++)
+                                        <div class="skeleton h-20 rounded-xl"></div>
+                                    @endfor
+                                </div>
+                            </div>
+                            <div class="rounded-2xl border border-ink-900/5 bg-white p-5 shadow-sm">
+                                <div class="skeleton h-4 w-32 rounded"></div>
+                                <div class="mt-4 space-y-3">
+                                    @for ($i = 0; $i < 3; $i++)
+                                        <div class="skeleton h-12 rounded-xl"></div>
+                                    @endfor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

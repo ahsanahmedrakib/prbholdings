@@ -17,15 +17,22 @@ class AuthController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
+        $data = $request->validate([
+            'login' => ['required', 'string'],
             'password' => ['required', 'string'],
         ]);
 
-        if (! Auth::guard('admin')->attempt($credentials, $request->boolean('remember'))) {
+        $field = filter_var($data['login'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+
+        if (
+            ! Auth::guard('admin')->attempt([
+                $field => $data['login'],
+                'password' => $data['password'],
+            ], $request->boolean('remember'))
+        ) {
             return back()
-                ->withInput($request->only('email'))
-                ->withErrors(['email' => 'These credentials do not match our records.']);
+                ->withInput($request->only('login'))
+                ->withErrors(['login' => 'These credentials do not match our records.']);
         }
 
         $request->session()->regenerate();

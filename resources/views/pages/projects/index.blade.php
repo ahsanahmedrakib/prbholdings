@@ -5,6 +5,7 @@
 
 @section('content')
     <x-page-hero
+        :image="setting('banner_image_projects')"
         eyebrow="Our Projects"
         title="Addresses designed around the way you live."
         subtitle="Browse our portfolio of residential apartments across Uttara, Dakshinkhan, Kawlar and beyond — each planned with care, built with precision."
@@ -12,12 +13,12 @@
 
     <section class="bg-cream py-16 lg:py-20">
         <div class="container-x">
-            <div class="flex flex-col gap-6 rounded-[2rem] border border-ink-900/5 bg-white p-5 shadow-sm sm:p-6 lg:flex-row lg:items-center lg:justify-between" data-reveal>
+            <div class="flex flex-col gap-6 rounded-4xl border border-ink-900/5 bg-white p-5 shadow-sm sm:p-6 lg:flex-row lg:items-center lg:justify-between" data-reveal>
                 <div class="flex flex-wrap items-center gap-2">
                     <a href="{{ route('projects.index', array_filter(['q' => $search ?: null])) }}" class="inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-xs font-bold transition {{ ! $status ? 'bg-brand-700 text-white shadow-md shadow-brand-900/20' : 'bg-cream text-ink-600 hover:text-brand-800' }}">
                         All <span class="text-[10px] opacity-60">{{ $statusCounts['all'] }}</span>
                     </a>
-                    @foreach (['ongoing' => 'Ongoing', 'upcoming' => 'Upcoming', 'completed' => 'Handed Over'] as $value => $label)
+                    @foreach (['ongoing' => 'Ongoing', 'upcoming' => 'Upcoming', 'completed' => 'Handed Over', 'ready' => 'Ready'] as $value => $label)
                         <a href="{{ route('projects.index', array_filter(['status' => $value, 'q' => $search ?: null])) }}" class="inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-xs font-bold transition {{ $status === $value ? 'bg-brand-700 text-white shadow-md shadow-brand-900/20' : 'bg-cream text-ink-600 hover:text-brand-800' }}">
                             {{ $label }} <span class="text-[10px] opacity-60">{{ $statusCounts[$value] }}</span>
                         </a>
@@ -53,7 +54,7 @@
             </div>
 
             @if ($projects->isEmpty())
-                <div class="mt-10 rounded-[2rem] border border-dashed border-ink-900/15 bg-white px-6 py-20 text-center">
+                <div class="mt-10 rounded-4xl border border-dashed border-ink-900/15 bg-white px-6 py-20 text-center">
                     <span class="mx-auto grid size-16 place-items-center rounded-full bg-cream text-brand-700">
                         <x-icon name="search" class="size-7" />
                     </span>

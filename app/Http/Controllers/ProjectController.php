@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Amenity;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -15,7 +16,7 @@ class ProjectController extends Controller
 
         $projects = Project::query()
             ->active()
-            ->when(in_array($status, ['ongoing', 'upcoming', 'completed'], true), fn ($query) => $query->where('status', $status))
+            ->when(in_array($status, ['ongoing', 'upcoming', 'completed', 'ready'], true), fn ($query) => $query->where('status', $status))
             ->when($search !== '', function ($query) use ($search) {
                 $query->where(function ($query) use ($search) {
                     $query->where('name', 'like', "%{$search}%")
@@ -32,6 +33,7 @@ class ProjectController extends Controller
             'ongoing' => Project::query()->active()->where('status', 'ongoing')->count(),
             'upcoming' => Project::query()->active()->where('status', 'upcoming')->count(),
             'completed' => Project::query()->active()->where('status', 'completed')->count(),
+            'ready' => Project::query()->active()->where('status', 'ready')->count(),
         ];
 
         return view('pages.projects.index', compact('projects', 'status', 'search', 'statusCounts'));
@@ -51,7 +53,7 @@ class ProjectController extends Controller
             ->take(3)
             ->get();
 
-        $amenities = \App\Models\Amenity::query()->active()->get();
+        $amenities = Amenity::query()->active()->get();
 
         return view('pages.projects.show', compact('project', 'related', 'amenities'));
     }

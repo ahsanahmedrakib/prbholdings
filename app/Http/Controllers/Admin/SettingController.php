@@ -11,21 +11,41 @@ use Illuminate\View\View;
 
 class SettingController extends Controller
 {
+    /**
+     * Page banner image settings, keyed by setting name.
+     */
+    public const BANNERS = [
+        'banner_image' => 'Default banner (fallback for every page)',
+        'banner_image_about' => 'About page',
+        'banner_image_team' => 'Our Team page',
+        'banner_image_projects' => 'Projects page',
+        'banner_image_gallery' => 'Gallery page',
+        'banner_image_contact' => 'Contact page',
+        'banner_image_privacy' => 'Privacy Policy page',
+    ];
+
     public function edit(): View
     {
         $settings = Setting::query()->orderBy('group')->orderBy('id')->get()->groupBy('group');
+        $banners = self::BANNERS;
 
-        return view('admin.settings.edit', compact('settings'));
+        return view('admin.settings.edit', compact('settings', 'banners'));
     }
 
     public function update(Request $request): RedirectResponse
     {
-        $request->validate([
+        $rules = [
             'settings' => ['nullable', 'array'],
             'settings.*' => ['nullable', 'string'],
             'about_image_main_file' => ['nullable', 'image', 'max:6144'],
             'about_image_secondary_file' => ['nullable', 'image', 'max:6144'],
-        ]);
+        ];
+
+        foreach (array_keys(self::BANNERS) as $key) {
+            $rules[$key.'_file'] = ['nullable', 'image', 'max:6144'];
+        }
+
+        $request->validate($rules);
 
         foreach ((array) $request->input('settings', []) as $key => $value) {
             $setting = Setting::where('key', $key)->first();
@@ -43,6 +63,13 @@ class SettingController extends Controller
         if ($request->hasFile('about_image_secondary_file')) {
             ImageUpload::delete(Setting::get('about_image_secondary'));
             Setting::put('about_image_secondary', ImageUpload::store($request->file('about_image_secondary_file'), 'settings', 'about-secondary'), 'about');
+        }
+
+        foreach (array_keys(self::BANNERS) as $key) {
+            if ($request->hasFile($key.'_file')) {
+                ImageUpload::delete(Setting::get($key));
+                Setting::put($key, ImageUpload::store($request->file($key.'_file'), 'settings', $key), 'banner');
+            }
         }
 
         Setting::flush();

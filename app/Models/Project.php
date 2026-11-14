@@ -11,6 +11,7 @@ class Project extends Model
         'ongoing' => 'Ongoing',
         'upcoming' => 'Upcoming',
         'completed' => 'Handed Over',
+        'ready' => 'Ready',
     ];
 
     protected $fillable = [
@@ -101,6 +102,7 @@ class Project extends Model
         return match ($this->status) {
             'completed' => 'bg-gold-500/15 text-gold-700 ring-gold-500/30',
             'upcoming' => 'bg-accent-500/10 text-accent-600 ring-accent-500/25',
+            'ready' => 'bg-brand-600 text-white ring-brand-600/40',
             default => 'bg-brand-500/10 text-brand-700 ring-brand-500/25',
         };
     }

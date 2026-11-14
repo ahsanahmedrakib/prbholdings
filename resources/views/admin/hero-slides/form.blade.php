@@ -64,7 +64,7 @@
                     <p class="mt-1 text-[11px] text-ink-400">Portrait orientation works best (e.g. 1000×1250px).</p>
 
                     @if ($slide->image)
-                        <img src="{{ $slide->image_url }}" alt="{{ $slide->title }}" class="mt-4 aspect-[4/5] w-full rounded-xl object-cover">
+                        <img src="{{ $slide->image_url }}" alt="{{ $slide->title }}" class="mt-4 aspect-4/5 w-full rounded-xl object-cover">
                     @endif
 
                     <input class="admin-input mt-4 py-2 text-xs file:mr-3 file:rounded-lg file:border-0 file:bg-brand-50 file:px-3 file:py-1.5 file:text-xs file:font-bold file:text-brand-800" type="file" name="image_file" accept="image/*" @if (! $slide->exists) required @endif>

@@ -18,6 +18,7 @@
     <meta name="twitter:card" content="summary_large_image">
 
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.ico') }}">
+    <link rel="preload" as="image" href="{{ asset('logo-288.png') }}" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -25,18 +26,37 @@
         rel="stylesheet">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <noscript>
+        <style>
+            [data-preloader] {
+                display: none !important;
+            }
+        </style>
+    </noscript>
     @stack('head')
 </head>
 
 <body class="min-h-screen overflow-x-hidden bg-cream font-sans text-ink-800 antialiased">
-    <div data-scroll-progress class="fixed inset-x-0 top-0 z-[70] h-0.5 origin-left bg-accent-600" style="width: 0">
+    <div data-preloader class="preloader" aria-hidden="true">
+        <div class="preloader__glow"></div>
+        <div class="preloader__inner">
+            <div class="preloader__logo">
+                <span class="preloader__ring"></span>
+                <img src="{{ asset('logo-288.png') }}" alt="PRB Holdings" width="288" height="288" class="relative h-28 w-28 object-contain sm:h-36 sm:w-36">
+            </div>
+            <p class="preloader__slogan">Your satisfaction is our <span>Dream</span></p>
+            <div class="preloader__bar"><span></span></div>
+        </div>
+    </div>
+
+    <div data-scroll-progress class="fixed inset-x-0 top-0 z-70 h-0.5 origin-left bg-accent-600" style="width: 0">
     </div>
 
     @include('partials.header')
 
     @if (session('success'))
         <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 6000)" x-show="show" x-transition.opacity.duration.500ms x-cloak
-            class="fixed right-4 top-24 z-[80] w-[calc(100%-2rem)] max-w-sm" role="status">
+            class="fixed right-4 top-24 z-80 w-[calc(100%-2rem)] max-w-sm" role="status">
             <div
                 class="flex items-start gap-3 rounded-2xl border border-brand-600/20 bg-white p-4 shadow-2xl shadow-brand-900/15">
                 <span class="grid size-9 shrink-0 place-items-center rounded-full bg-brand-700 text-white">

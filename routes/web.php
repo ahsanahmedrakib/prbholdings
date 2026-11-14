@@ -4,9 +4,11 @@ use App\Http\Controllers\Admin\AmenityController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\GalleryImageController;
 use App\Http\Controllers\Admin\HeroSlideController;
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\TeamMemberController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
@@ -16,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/about/team', [PageController::class, 'team'])->name('about.team');
+Route::get('/about/privacy-policy', [PageController::class, 'privacy'])->name('about.privacy');
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
 Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.show');
 Route::get('/gallery', [PageController::class, 'gallery'])->name('gallery');
@@ -36,8 +40,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::resource('projects', AdminProjectController::class)->except(['show']);
         Route::resource('hero-slides', HeroSlideController::class)->except(['show']);
+        Route::resource('gallery', GalleryImageController::class)->except(['show']);
         Route::resource('testimonials', TestimonialController::class)->except(['show']);
         Route::resource('amenities', AmenityController::class)->except(['show']);
+        Route::resource('team', TeamMemberController::class)->except(['show']);
 
         Route::get('messages', [ContactMessageController::class, 'index'])->name('messages.index');
         Route::get('messages/{message}', [ContactMessageController::class, 'show'])->name('messages.show');

@@ -72,7 +72,7 @@
 
                 <div class="relative mx-auto w-full max-w-md lg:max-w-none" data-reveal="right">
                     <div class="absolute -right-4 -top-4 size-24 rounded-[1.75rem] border border-gold-300/30"></div>
-                    <div class="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] border border-white/15 shadow-2xl shadow-black/40">
+                    <div class="relative aspect-4/5 overflow-hidden rounded-[2.5rem] border border-white/15 shadow-2xl shadow-black/40">
                         <img src="{{ $project->hero_image_url }}" alt="{{ $project->name }}" class="h-full w-full object-cover" fetchpriority="high">
                         <div class="absolute inset-0 bg-linear-to-t from-ink-950/60 via-transparent to-transparent"></div>
                     </div>
@@ -93,7 +93,7 @@
     @if ($facts->isNotEmpty())
         <div class="relative z-10 bg-cream">
             <div class="container-x">
-                <div class="mt-[-2.5rem] grid gap-px overflow-hidden rounded-[2rem] border border-ink-900/5 bg-ink-900/10 shadow-2xl shadow-ink-950/15 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6" data-reveal="zoom">
+                <div class="-mt-10 grid gap-px overflow-hidden rounded-4xl border border-ink-900/5 bg-ink-900/10 shadow-2xl shadow-ink-950/15 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6" data-reveal="zoom">
                     @foreach ($facts as $fact)
                         <div class="group bg-white px-5 py-6 transition hover:bg-brand-50/60">
                             <span class="grid size-9 place-items-center rounded-xl bg-cream text-brand-700 transition group-hover:bg-brand-700 group-hover:text-white">
@@ -210,7 +210,7 @@
                         <span class="eyebrow">Project Gallery</span>
                         <h2 class="display-title mt-4">Step inside.</h2>
                     </div>
-                    <a href="{{ route('gallery', ['project' => $project->slug]) }}" class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.18em] text-brand-800">
+                    <a href="{{ route('gallery') }}" class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.18em] text-brand-800">
                         Full gallery <x-icon name="arrow-right" class="size-4" />
                     </a>
                 </div>
@@ -221,10 +221,10 @@
                             type="button"
                             data-lightbox="{{ $image->image_url }}"
                             data-lightbox-alt="{{ $image->caption ?: $project->name }}"
-                            class="group relative overflow-hidden rounded-[1.5rem] bg-ink-900 text-left {{ $loop->first ? 'sm:col-span-2 sm:row-span-2' : '' }}"
+                            class="group relative overflow-hidden rounded-3xl bg-ink-900 text-left {{ $loop->first ? 'sm:col-span-2 sm:row-span-2' : '' }}"
                             data-reveal="zoom"
                         >
-                            <div class="{{ $loop->first ? 'aspect-[4/3] sm:aspect-square' : 'aspect-[4/3]' }} overflow-hidden">
+                            <div class="{{ $loop->first ? 'aspect-4/3 sm:aspect-square' : 'aspect-4/3' }} overflow-hidden">
                                 <img src="{{ $image->image_url }}" alt="{{ $image->caption ?: $project->name }}" loading="lazy" class="h-full w-full object-cover transition duration-700 group-hover:scale-110">
                             </div>
                             <div class="absolute inset-0 bg-linear-to-t from-ink-950/75 via-transparent to-transparent"></div>
@@ -258,7 +258,7 @@
                             class="group overflow-hidden rounded-[1.75rem] border border-ink-900/5 bg-white p-3 text-left shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
                             data-reveal
                         >
-                            <div class="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl bg-cream">
+                            <div class="flex aspect-4/3 items-center justify-center overflow-hidden rounded-2xl bg-cream">
                                 <img src="{{ $plan->image_url }}" alt="{{ $plan->caption ?: $project->name }}" loading="lazy" class="h-full w-full object-contain transition duration-500 group-hover:scale-105">
                             </div>
                             <div class="flex items-center justify-between gap-3 px-2 pb-1 pt-4">
@@ -284,7 +284,7 @@
 
                 <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                     @foreach ($amenities as $amenity)
-                        <div class="group rounded-[1.5rem] border border-white/10 bg-white/5 p-5 transition duration-500 hover:-translate-y-1 hover:border-gold-300/25 hover:bg-white/10" data-reveal>
+                        <div class="group rounded-3xl border border-white/10 bg-white/5 p-5 transition duration-500 hover:-translate-y-1 hover:border-gold-300/25 hover:bg-white/10" data-reveal>
                             <span class="grid size-11 place-items-center rounded-xl bg-brand-600/20 text-gold-300 transition group-hover:bg-gold-400 group-hover:text-ink-950">
                                 <x-icon :name="$amenity->icon" class="size-5" />
                             </span>
@@ -308,8 +308,8 @@
                     {{ $project->location }}
                 </p>
 
-                <div class="mt-7 overflow-hidden rounded-[2rem] border border-ink-900/10 bg-cream shadow-sm">
-                    <div class="aspect-[4/3] w-full sm:aspect-[16/10]">
+                <div class="mt-7 overflow-hidden rounded-4xl border border-ink-900/10 bg-cream shadow-sm">
+                    <div class="aspect-4/3 w-full sm:aspect-16/10">
                         <iframe
                             src="https://www.google.com/maps?q={{ urlencode($project->location) }}&output=embed"
                             title="{{ $project->name }} location map"
@@ -337,7 +337,7 @@
             </div>
 
             <div class="lg:sticky lg:top-28" data-reveal="right">
-                <div class="rounded-[2rem] border border-ink-900/5 bg-cream p-6 shadow-xl shadow-ink-950/5 sm:p-8">
+                <div class="rounded-4xl border border-ink-900/5 bg-cream p-6 shadow-xl shadow-ink-950/5 sm:p-8">
                     <div class="mb-6">
                         <p class="text-[10px] font-extrabold uppercase tracking-[0.28em] text-accent-600">Register Your Interest</p>
                         <h3 class="mt-2 font-display text-2xl text-ink-900">Enquire about {{ $project->name }}</h3>

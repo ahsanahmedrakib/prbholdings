@@ -76,6 +76,29 @@
                     </div>
                 </div>
 
+                <div class="admin-card" id="banner">
+                    <div class="flex items-start justify-between gap-3">
+                        <div>
+                            <h2 class="text-sm font-extrabold text-ink-900">Page Banners</h2>
+                            <p class="mt-1 text-[11px] text-ink-400">Set a different background image for each inner page banner. The default is used wherever a page-specific image is not set.</p>
+                        </div>
+                        <span class="grid size-9 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-700"><x-icon name="image" class="size-4" /></span>
+                    </div>
+
+                    <p class="mt-4 text-[10px] text-ink-400">Recommended 1920×562px or wider for a crisp full-width banner.</p>
+
+                    <div class="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                        @foreach ($banners as $key => $label)
+                            @php $bannerCurrent = $get('banner', $key, $key === 'banner_image' ? 'uploads/projects/shirin-garden/hero.jpg' : ''); @endphp
+                            <div class="rounded-xl border border-ink-900/5 bg-ink-50/60 p-3">
+                                <label class="admin-label" for="{{ $key }}_file">{{ $label }}</label>
+                                <img src="{{ $bannerCurrent ? asset($bannerCurrent) : asset('uploads/placeholder.jpg') }}" alt="{{ $label }}" class="mb-2 h-28 w-full rounded-lg object-cover">
+                                <input class="admin-input py-2 text-xs file:mr-3 file:rounded-lg file:border-0 file:bg-brand-50 file:px-3 file:py-1.5 file:text-xs file:font-bold file:text-brand-800" type="file" id="{{ $key }}_file" name="{{ $key }}_file" accept="image/*">
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
                 <div class="admin-card" id="about">
                     <div class="flex items-start justify-between gap-3">
                         <div>
@@ -110,6 +133,10 @@
                         <div>
                             <label class="admin-label" for="mission">Mission</label>
                             <textarea class="admin-input min-h-24 resize-y" id="mission" name="settings[mission]">{{ $get('about', 'mission') }}</textarea>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="admin-label" for="about_video_url">Intro video URL <span class="font-medium normal-case tracking-normal text-ink-400">(optional — shows a play button on the About page)</span></label>
+                            <input class="admin-input" type="url" id="about_video_url" name="settings[about_video_url]" value="{{ $get('about', 'about_video_url') }}" placeholder="https://www.youtube.com/embed/...">
                         </div>
                     </div>
 
@@ -228,7 +255,7 @@
                     <div class="mt-5 border-t border-ink-900/5 pt-4">
                         <p class="admin-label">Jump to section</p>
                         <nav class="space-y-1">
-                            @foreach (['general' => 'General Information', 'about' => 'About Page', 'home' => 'Homepage Content', 'seo' => 'SEO & Footer'] as $anchor => $label)
+                            @foreach (['general' => 'General Information', 'banner' => 'Page Banner', 'about' => 'About Page', 'home' => 'Homepage Content', 'seo' => 'SEO & Footer'] as $anchor => $label)
                                 <a href="#{{ $anchor }}" class="flex items-center gap-2 rounded-lg px-2.5 py-2 text-[11px] font-semibold text-ink-500 transition hover:bg-brand-50 hover:text-brand-800">
                                     <span class="size-1.5 rounded-full bg-gold-500"></span> {{ $label }}
                                 </a>

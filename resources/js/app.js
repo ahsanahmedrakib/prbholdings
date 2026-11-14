@@ -41,6 +41,41 @@ function initHeader() {
     window.addEventListener("scroll", onScroll, { passive: true });
 }
 
+function initPreloader() {
+    const preloader = document.querySelector("[data-preloader]");
+
+    if (!preloader) {
+        return;
+    }
+
+    const started = performance.now();
+    let hidden = false;
+
+    const hide = () => {
+        if (hidden) {
+            return;
+        }
+
+        hidden = true;
+
+        const elapsed = performance.now() - started;
+        const delay = Math.max(0, 1000 - elapsed);
+
+        window.setTimeout(() => {
+            preloader.classList.add("is-hidden");
+            window.setTimeout(() => preloader.remove(), 800);
+        }, delay);
+    };
+
+    if (document.readyState === "complete") {
+        hide();
+    } else {
+        window.addEventListener("load", hide, { once: true });
+    }
+
+    window.setTimeout(hide, 2500);
+}
+
 function initReveal() {
     const items = document.querySelectorAll("[data-reveal]");
 
@@ -262,6 +297,48 @@ function initTestimonialSlider() {
     });
 }
 
+function initTeamSlider() {
+    document.querySelectorAll("[data-team-swiper]").forEach((root) => {
+        const swiperEl = root.querySelector(".swiper");
+
+        if (!swiperEl) {
+            return;
+        }
+
+        new Swiper(swiperEl, {
+            modules: [Autoplay, Navigation, Pagination],
+            slidesPerView: 1.1,
+            spaceBetween: 20,
+            grabCursor: true,
+            watchOverflow: true,
+            loop: true,
+            autoplay: prefersReducedMotion
+                ? false
+                : {
+                      delay: 5200,
+                      disableOnInteraction: false,
+                      pauseOnMouseEnter: true,
+                  },
+            navigation: {
+                nextEl: root.querySelector("[data-team-next]"),
+                prevEl: root.querySelector("[data-team-prev]"),
+            },
+            pagination: {
+                el: root.querySelector("[data-team-dots]"),
+                clickable: true,
+                bulletClass: "mini-dot",
+                bulletActiveClass: "mini-dot-active",
+            },
+            breakpoints: {
+                640: { slidesPerView: 1.8, spaceBetween: 22 },
+                768: { slidesPerView: 2.4, spaceBetween: 24 },
+                1024: { slidesPerView: 3, spaceBetween: 26 },
+                1280: { slidesPerView: 3.4, spaceBetween: 28 },
+            },
+        });
+    });
+}
+
 function initLightbox() {
     const lightbox = document.querySelector("[data-lightbox-modal]");
 
@@ -320,12 +397,88 @@ function initBackToTop() {
     });
 }
 
+function initAdminLoading() {
+    const overlay = document.querySelector("[data-admin-loading]");
+
+    if (!overlay) {
+        return;
+    }
+
+    let timer = null;
+
+    const reveal = () => {
+        window.clearTimeout(timer);
+        timer = window.setTimeout(() => {
+            overlay.hidden = false;
+        }, 150);
+    };
+
+    const conceal = () => {
+        window.clearTimeout(timer);
+        overlay.hidden = true;
+    };
+
+    document.addEventListener("click", (event) => {
+        const link = event.target.closest("a[href]");
+
+        if (!link || link.dataset.noLoading !== undefined) {
+            return;
+        }
+
+        if (
+            event.button !== 0 ||
+            event.metaKey ||
+            event.ctrlKey ||
+            event.shiftKey ||
+            event.altKey ||
+            link.target === "_blank" ||
+            link.hasAttribute("download")
+        ) {
+            return;
+        }
+
+        let url;
+
+        try {
+            url = new URL(link.href, window.location.href);
+        } catch {
+            return;
+        }
+
+        if (url.origin !== window.location.origin) {
+            return;
+        }
+
+        if (
+            url.pathname === window.location.pathname &&
+            url.search === window.location.search
+        ) {
+            return;
+        }
+
+        reveal();
+    });
+
+    document.addEventListener("submit", (event) => {
+        if (event.defaultPrevented) {
+            return;
+        }
+
+        reveal();
+    });
+
+    window.addEventListener("pageshow", conceal);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+    initPreloader();
     initHeader();
+    initAdminLoading();
     initReveal();
     initHeroSliders();
     initProjectsSlider();
     initTestimonialSlider();
+    initTeamSlider();
     initLightbox();
     initBackToTop();
 });

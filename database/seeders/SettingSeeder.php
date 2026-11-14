@@ -40,6 +40,7 @@ We want to establish ourselves not only as mere service providers, but also as t
                 'mission' => 'To satisfy our landowners and buyers through our heartiest endeavour and nation building through sustainable, planned housing facilities.',
                 'about_image_main' => 'uploads/projects/shirin-garden/living.jpg',
                 'about_image_secondary' => 'uploads/projects/shirin-garden/bedroom.jpg',
+                'about_video_url' => '',
             ],
             'home' => [
                 'hero_badge' => 'Building trust since day one',
@@ -58,6 +59,15 @@ We want to establish ourselves not only as mere service providers, but also as t
                 'landowner_text' => 'Build your sanctuary with a team that protects your land, your timeline and your peace of mind.',
                 'buyer_title' => 'For Buyers',
                 'buyer_text' => 'Invest in a better tomorrow with thoughtfully designed apartments in Uttara\'s most connected neighbourhoods.',
+            ],
+            'banner' => [
+                'banner_image' => 'uploads/projects/shirin-garden/hero.jpg',
+                'banner_image_about' => 'uploads/projects/shiri-serenity/hero.jpg',
+                'banner_image_team' => 'uploads/projects/naima-palace/hero.jpg',
+                'banner_image_projects' => 'uploads/projects/asiancity-kawlar/hero.jpg',
+                'banner_image_gallery' => 'uploads/projects/brothers-garden/hero.jpg',
+                'banner_image_contact' => 'uploads/projects/ruhina-palace/hero.jpg',
+                'banner_image_privacy' => 'uploads/projects/mollartek-uttara/hero.jpg',
             ],
             'footer' => [
                 'footer_about' => 'A modern real estate developer creating sustainable, thoughtfully planned residential communities across Uttara, Dhaka.',

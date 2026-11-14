@@ -215,7 +215,7 @@
                         <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
                             @foreach ($floorPlans as $image)
                                 <label class="group relative block overflow-hidden rounded-xl border border-ink-900/10">
-                                    <img src="{{ $image->image_url }}" alt="{{ $image->caption }}" class="aspect-[4/3] w-full object-cover">
+                                    <img src="{{ $image->image_url }}" alt="{{ $image->caption }}" class="aspect-4/3 w-full object-cover">
                                     <span class="absolute inset-x-2 bottom-2 flex items-center gap-2 rounded-lg bg-ink-950/80 px-2 py-1.5 text-[10px] font-bold text-white backdrop-blur">
                                         <input type="checkbox" name="remove_images[]" value="{{ $image->id }}" class="size-3.5 rounded border-white/30 bg-white/20 text-accent-600">
                                         Remove
