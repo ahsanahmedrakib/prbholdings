@@ -160,6 +160,12 @@
     [x-cloak] {
         display: none !important;
     }
+
+    @media (min-width: 1024px) {
+        .admin-sidebar[x-cloak] {
+            display: flex !important;
+        }
+    }
 }
 
 @layer components {

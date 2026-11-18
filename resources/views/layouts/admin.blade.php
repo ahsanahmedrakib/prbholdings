@@ -21,7 +21,7 @@
             class="fixed inset-0 z-40 bg-ink-950/60 backdrop-blur-sm lg:hidden" @click="sidebar = false"></div>
 
         <aside x-cloak :class="sidebar ? 'translate-x-0' : '-translate-x-full'"
-            class="admin-scroll fixed inset-y-0 left-0 z-50 flex w-72 flex-col overflow-y-auto bg-ink-950 text-white transition-transform duration-300 lg:static lg:translate-x-0">
+            class="admin-scroll admin-sidebar fixed inset-y-0 left-0 z-50 flex w-72 flex-col overflow-y-auto bg-ink-950 text-white transition-transform duration-300 lg:static lg:translate-x-0">
             <div class="flex items-center justify-between border-b border-white/10 px-5 py-5">
                 <x-logo :light="true" class="scale-90 origin-left" />
                 <button type="button" @click="sidebar = false"
@@ -165,20 +165,8 @@
         </div>
     </div>
 
-    <div data-admin-loading hidden class="fixed inset-0 z-70 bg-ink-50" aria-hidden="true">
+    <div data-admin-loading hidden class="fixed inset-0 z-70 bg-ink-50 lg:left-72" aria-hidden="true">
         <div class="flex h-full">
-            <div class="hidden w-72 shrink-0 flex-col border-r border-white/5 bg-ink-950 lg:flex">
-                <div class="border-b border-white/10 px-5 py-5">
-                    <div class="skeleton-dark h-8 w-36 rounded-lg"></div>
-                </div>
-                <div class="space-y-2 px-3 py-5">
-                    <div class="skeleton-dark mb-3 h-3 w-20 rounded"></div>
-                    @for ($i = 0; $i < 6; $i++)
-                        <div class="skeleton-dark h-10 rounded-xl"></div>
-                    @endfor
-                </div>
-            </div>
-
             <div class="flex min-w-0 flex-1 flex-col">
                 <div class="border-b border-ink-900/5 bg-white px-4 py-4 sm:px-6 lg:px-8">
                     <div class="skeleton h-3 w-24 rounded"></div>
